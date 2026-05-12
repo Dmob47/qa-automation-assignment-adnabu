@@ -1,0 +1,43 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Pytest cache
+.pytest_cache/
+
+# Virtual environment
+venv/
+venv1/
+.env/
+
+# IDE settings
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Python build files
+build/
+dist/
+*.egg-info/
+
+# Logs
+*.log
+
+# Coverage reports
+.coverage
+htmlcov/
+
+# Selenium / webdriver temporary files
+*.tmp
+
+# Optional screenshot files
+screenshots/*.png
+
+# Keep reports folder but ignore generated assets if needed
+reports/assets/
+
+# Uncomment below if you DON'T want to push report.html
+# reports/report.html

@@ -1,0 +1,2 @@
+base_url = "https://adnabu-store-assignment1.myshopify.com/"
+password = "AdNabuQA"
