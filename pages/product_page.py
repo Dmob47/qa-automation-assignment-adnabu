@@ -13,13 +13,18 @@ class ProductPage:
         self.wait = WebDriverWait(driver, 10)
 
     def open_first_product(self):
-        all_products = (By.XPATH,"//a[contains(@id,'CardLink') and contains(@href,'products')]")
-        product_list = self.driver.find_elements(*all_products)
-        first_product = self.wait.until(EC.element_to_be_clickable(product_list[0]))
+        all_products = (By.XPATH, "//a[contains(@id,'CardLink') and contains(@href,'products')]")
+        self.wait.until(EC.visibility_of_any_elements_located(all_products))
+        first_product = self.wait.until(EC.element_to_be_clickable(all_products))
+        self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", first_product)
         first_product.click()
 
     def add_to_cart(self):
-        self.wait.until(EC.element_to_be_clickable(self.ADD_TO_CART_BUTTON)).click()
+        add_button = self.wait.until(EC.element_to_be_clickable(self.ADD_TO_CART_BUTTON))
+        self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", add_button)
+        add_button.click()
 
     def get_cart_count(self):
-        return self.wait.until(EC.visibility_of_element_located(self.CART_COUNT)).get_attribute("value")
+        return self.wait.until(lambda driver: (
+            driver.find_element(*self.CART_COUNT).get_attribute("value") or False
+        ))

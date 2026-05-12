@@ -9,6 +9,7 @@ class HomePage:
     SEARCH_LENS = (By.XPATH,"//summary[@aria-label='Search']//span")
     SEARCH_BOX = (By.XPATH, "//input[@id='Search-In-Modal']")
     SEARCH_BUTTON = (By.XPATH, "//button[@aria-label='Search']")
+    SEARCH_RESULTS = (By.XPATH, "//a[contains(@id,'CardLink') and contains(@href,'products')]")
 
     def __init__(self, driver):
         self.driver = driver
@@ -25,10 +26,12 @@ class HomePage:
             pass  # Password not required or already entered
 
     def search_product(self, product_name):
-        search_lense =  self.wait.until(EC.visibility_of_element_located(self.SEARCH_LENS))
+        search_lense = self.wait.until(EC.element_to_be_clickable(self.SEARCH_LENS))
         search_lense.click()
-        search_box = self.wait.until(EC.visibility_of_element_located(self.SEARCH_BOX))
+        search_box = self.wait.until(EC.element_to_be_clickable(self.SEARCH_BOX))
         search_box.clear()
         search_box.send_keys(product_name)
         search_btn = self.wait.until(EC.element_to_be_clickable(self.SEARCH_BUTTON))
         search_btn.click()
+        self.wait.until(EC.url_contains("/search"))
+        self.wait.until(EC.presence_of_all_elements_located(self.SEARCH_RESULTS))

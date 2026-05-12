@@ -14,7 +14,7 @@ def test_search_and_add_to_cart():
 
         home.open_website(password)
 
-        home.search_product("wax")
+        home.search_product("hydrogen")
 
         product.open_first_product()
 
