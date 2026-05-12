@@ -1,5 +1,3 @@
-# TEST_CASES.md
-
 # AdNabu QA Assignment — Manual Test Cases
 
 This document contains manual test cases for the following modules:
